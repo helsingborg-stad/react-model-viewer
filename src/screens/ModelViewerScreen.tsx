@@ -22,9 +22,9 @@ function ModelViewerScreen({ gltf, usdz }: Props) {
       <div
         style={{
           position: "relative",
-          width: 800,
+          width: 400,
           maxWidth: "100vw",
-          height: 800,
+          height: 400,
           maxHeight: "90vh",
           marginLeft: "auto",
           marginRight: "auto",
