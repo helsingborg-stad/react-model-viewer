@@ -9,6 +9,7 @@ function ModelViewerElement({ gltf, usdz }: any) {
       ar
       auto-rotate
       camera-controls
+      shadow-intensity="1"
       background-color="#2EAFAC"
     />
   );

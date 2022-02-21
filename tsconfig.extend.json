@@ -11,7 +11,19 @@
       "@assets": ["./assets"],
       "@assets/*": ["./assets/*"],
       "@utils": ["./utils"],
-      "@utils/*": ["./utils/*"]
+      "@utils/*": ["./utils/*"],
+      "@graphQL": ["./graphQL"],
+      "@graphQL/*": ["./graphQL/*"],
+      "@hooks": ["./hooks"],
+      "@hooks/*": ["./hooks/*"],
+      "@context": ["./context"],
+      "@context/*": ["./context/*"],
+      "@screens": ["./screens"],
+      "@screens/*": ["./screens/*"],
+      "@types": ["./types"],
+      "@types/*": ["./types/*"],
+      "@services": ["./services"],
+      "@services/*": ["./services/*"]
     }
   }
 }

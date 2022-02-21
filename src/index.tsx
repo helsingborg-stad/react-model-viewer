@@ -3,17 +3,29 @@ import ReactDOM from "react-dom";
 import "./index.css";
 import WebXRPolyfill from "webxr-polyfill";
 import { BrowserRouter } from "react-router-dom";
+import { ApolloClient, InMemoryCache, ApolloProvider } from "@apollo/client";
+import {
+  useQuery,
+  useMutation,
+  useQueryClient,
+  QueryClient,
+  QueryClientProvider,
+} from "react-query";
+import GQLClient from "./services/GQLClient";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import "@google/model-viewer/dist/model-viewer";
 
 const polyfill = new WebXRPolyfill();
+const queryClient = new QueryClient();
 
 ReactDOM.render(
   <React.StrictMode>
-    <BrowserRouter>
-      <App />
-    </BrowserRouter>
+    <QueryClientProvider client={queryClient}>
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
+    </QueryClientProvider>
   </React.StrictMode>,
   document.getElementById("root")
 );
