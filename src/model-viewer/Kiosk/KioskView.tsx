@@ -1,5 +1,6 @@
 import {
   Alert,
+  AppBar,
   Box,
   Card,
   CardContent,
@@ -7,21 +8,17 @@ import {
   Drawer,
   Grid,
   IconButton,
-  LinearProgress,
 } from "@mui/material";
 import { useFullscreen } from "ahooks";
-import React, { useContext, useRef, useState } from "react";
-import OpenInFullIcon from "@mui/icons-material/OpenInFull";
+import React, { useRef, useState } from "react";
 import CloseFullscreenIcon from "@mui/icons-material/CloseFullscreen";
+import OpenInFullIcon from "@mui/icons-material/OpenInFull";
 import MenuIcon from "@mui/icons-material/Menu";
-import ModelView from "./ModelView";
-import ModelRepositoryContext from "../ModelRepositoryContext";
-import ModelsContext from "../ModelsContext";
 import Sidebar from "./sidebar/Sidebar";
+import SelectedModelView from "./SelectedModelView";
+import SelectedModelInfoView from "./SelectedModelInfoView";
 
 export default function KioskView() {
-  const { isLoading, isError } = useContext(ModelRepositoryContext);
-  const { selectedModel } = useContext(ModelsContext);
   const ref = useRef<HTMLDivElement | null>(null);
   const [isFullscreen, { toggleFullscreen }] = useFullscreen(ref);
 
@@ -53,28 +50,56 @@ export default function KioskView() {
           keepMounted: true,
         }}
       >
-        <Box sx={{ maxWidth: "75vh", width: "480px", height: "100%" }}>
+        <Box
+          sx={{
+            maxWidth: "75vh",
+            minWidth: "25vh",
+            height: "100%",
+          }}
+        >
           <Sidebar />
         </Box>
       </Drawer>
 
-      <Container ref={ref} maxWidth={false}>
-        <Grid container spacing={3}>
-          <Grid item xs={12}>
-            <Grid container spacing={3}>
-              <Grid item xs={12}>
-                {fullScreenControl()}
-              </Grid>
-
-              <Grid item xs={12}>
-                {isLoading && <LinearProgress />}
-                {isError && <Alert severity="error">Error</Alert>}
-                {selectedModel && <ModelView model={selectedModel} />}
-              </Grid>
-            </Grid>
-          </Grid>
-        </Grid>
-      </Container>
+      <Box
+        sx={{
+          display: "flex",
+          flexDirection: "column",
+          height: "100vh",
+          maxHeight: "100vh",
+          backgroundColor: "lightGray",
+        }}
+      >
+        <Box sx={{ flex: 1 }}>
+          <Box
+            sx={{ position: "absolute", top: "1em", left: "1em", zIndex: 1200 }}
+          >
+            <IconButton onClick={toggleFullscreen}>
+              {isFullscreen ? <CloseFullscreenIcon /> : <OpenInFullIcon />}
+            </IconButton>
+          </Box>
+          <SelectedModelView />
+        </Box>
+        <Box
+          sx={{
+            backgroundColor: "gray",
+            marginTop: "auto",
+            marginBottom: "auto",
+            minHeight: "8rem",
+          }}
+        >
+          <Box sx={{ display: "flex", flexDirection: "row" }}>
+            <Box sx={{ flex: 1 }}>
+              <SelectedModelInfoView />
+            </Box>
+            <Box>
+              <IconButton onClick={() => setDrawer(true)}>
+                <MenuIcon />
+              </IconButton>
+            </Box>
+          </Box>
+        </Box>
+      </Box>
     </div>
   );
 }
