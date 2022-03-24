@@ -1,8 +1,8 @@
 import React, { useContext } from "react";
 import { Card, CardActionArea, CardContent, Typography } from "@mui/material";
 import { AspectRatio } from "react-aspect-ratio";
-import { Model } from "../types";
-import ModelsContext from "../ModelsContext";
+import { Model } from "../../types";
+import ModelsContext from "../../ModelsContext";
 
 type ThumbnailProps = {
   model: Model;
