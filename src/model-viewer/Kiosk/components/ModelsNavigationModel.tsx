@@ -28,7 +28,16 @@ export default function ModelsNavigationModel({
   } = model;
 
   return (
-    <Box key={id} onClick={() => onSelect(model)}>
+    <Box
+      key={id}
+      onClick={() => onSelect(model)}
+      sx={{
+        cursor: "pointer",
+        borderStyle: "solid",
+        borderWidth: "1px",
+        borderColor: isSelected ? "black" : "var(--nav-bg-yellow)",
+      }}
+    >
       <AspectRatio ratio="16/9">
         <model-viewer
           src={gltf}
