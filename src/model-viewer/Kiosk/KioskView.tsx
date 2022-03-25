@@ -24,43 +24,43 @@ export default function KioskView() {
 
   const [drawer, setDrawer] = useState(false);
 
-  const fullScreenControl = () => (
-    <Card>
-      <CardContent>
-        <Grid container>
-          <IconButton onClick={toggleFullscreen}>
-            {isFullscreen ? <CloseFullscreenIcon /> : <OpenInFullIcon />}
-          </IconButton>
-          <Box sx={{ flex: 1 }} />
-          <IconButton onClick={() => setDrawer(true)}>
-            <MenuIcon />
-          </IconButton>
-        </Grid>
-      </CardContent>
-    </Card>
+  const drawerView = () => (
+    <Drawer
+      open={drawer}
+      anchor="right"
+      onClose={() => setDrawer(false)}
+      ModalProps={{
+        keepMounted: true,
+      }}
+    >
+      <Box
+        sx={{
+          maxWidth: "75vh",
+          minWidth: "25vh",
+          height: "100%",
+        }}
+      >
+        <Sidebar />
+      </Box>
+    </Drawer>
   );
+
+  const contentView = () => (
+    <>
+      <Box sx={{ position: "absolute", top: "1em", left: "1em", zIndex: 1200 }}>
+        <IconButton onClick={toggleFullscreen}>
+          {isFullscreen ? <CloseFullscreenIcon /> : <OpenInFullIcon />}
+        </IconButton>
+      </Box>
+      <SelectedModelView />
+    </>
+  );
+
+  const infoView = () => <SelectedModelInfoView />;
 
   return (
     <div ref={ref} style={{ background: "white" }}>
-      <Drawer
-        open={drawer}
-        anchor="right"
-        onClose={() => setDrawer(false)}
-        ModalProps={{
-          keepMounted: true,
-        }}
-      >
-        <Box
-          sx={{
-            maxWidth: "75vh",
-            minWidth: "25vh",
-            height: "100%",
-          }}
-        >
-          <Sidebar />
-        </Box>
-      </Drawer>
-
+      {drawerView()}
       <Box
         sx={{
           display: "flex",
@@ -70,31 +70,27 @@ export default function KioskView() {
           backgroundColor: "lightGray",
         }}
       >
-        <Box sx={{ flex: 1 }}>
-          <Box
-            sx={{ position: "absolute", top: "1em", left: "1em", zIndex: 1200 }}
-          >
-            <IconButton onClick={toggleFullscreen}>
-              {isFullscreen ? <CloseFullscreenIcon /> : <OpenInFullIcon />}
-            </IconButton>
-          </Box>
-          <SelectedModelView />
-        </Box>
+        <Box sx={{ flex: 1 }}>{contentView()}</Box>
         <Box
           sx={{
             backgroundColor: "gray",
-            marginTop: "auto",
-            marginBottom: "auto",
-            minHeight: "8rem",
+            display: "flex",
+            alignItems: "center",
           }}
         >
-          <Box sx={{ display: "flex", flexDirection: "row" }}>
-            <Box sx={{ flex: 1 }}>
-              <SelectedModelInfoView />
-            </Box>
+          <Box
+            sx={{
+              display: "flex",
+              flexDirection: "row",
+              alignItems: "center",
+              width: "100%",
+              padding: "2rem",
+            }}
+          >
+            <Box sx={{ flex: 1 }}>{infoView()}</Box>
             <Box>
               <IconButton onClick={() => setDrawer(true)}>
-                <MenuIcon />
+                <MenuIcon fontSize="large" />
               </IconButton>
             </Box>
           </Box>
