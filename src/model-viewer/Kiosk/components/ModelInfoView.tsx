@@ -5,6 +5,7 @@ import QRCode from "react-qr-code";
 
 export default function ModelInfoView({ model }: { model: Model }) {
   const {
+    id,
     title,
     school: { label },
   } = model;
@@ -12,7 +13,7 @@ export default function ModelInfoView({ model }: { model: Model }) {
   return (
     <Grid container spacing={2}>
       <Grid item>
-        <QRCode size={64} value="apa" />
+        <QRCode size={64} value={document.location.href + id} />
       </Grid>
       <Grid item>
         <Typography variant="h6" component="h3">

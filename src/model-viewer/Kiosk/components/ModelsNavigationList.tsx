@@ -1,13 +1,15 @@
-import { Box, Stack, styled } from "@mui/material";
 import React, { useContext } from "react";
+import { Box, Stack, styled } from "@mui/material";
 import ModelsContext from "../../ModelsContext";
-import Thumbnail from "./Thumbnail";
+import ModelsNavModel from "./ModelsNavigationModel";
 
 const ScrollingContentContainer = styled(Box)({
   position: "relative",
   height: "100%",
   width: "100%",
+  backgroundColor: "var(--nav-bg-yellow)",
 });
+
 const ScrollingContent = styled(Box)({
   overflow: "scroll",
   height: "100%",
@@ -17,14 +19,19 @@ const ScrollingContent = styled(Box)({
   right: 0,
 });
 
-export default function Sidebar() {
-  const { models } = useContext(ModelsContext);
+export default function ModelsNavigationList() {
+  const { models, selectedModel, setSelectedModel } = useContext(ModelsContext);
   return (
     <ScrollingContentContainer>
       <ScrollingContent>
         <Stack spacing={3}>
           {models.map((model) => (
-            <Thumbnail key={model.id} model={model} />
+            <ModelsNavModel
+              key={model.id}
+              model={model}
+              isSelected={model === selectedModel}
+              onSelect={setSelectedModel}
+            />
           ))}
         </Stack>
       </ScrollingContent>

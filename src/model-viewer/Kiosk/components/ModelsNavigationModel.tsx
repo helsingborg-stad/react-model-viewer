@@ -1,29 +1,51 @@
-import React, { useContext } from "react";
-import { Card, CardActionArea, CardContent, Typography } from "@mui/material";
+import React from "react";
+import {
+  Box,
+  Card,
+  CardActionArea,
+  CardContent,
+  Typography,
+} from "@mui/material";
 import { AspectRatio } from "react-aspect-ratio";
 import { Model } from "../../types";
-import ModelsContext from "../../ModelsContext";
 
 type ThumbnailProps = {
   model: Model;
+  isSelected: boolean;
+  onSelect: (model: Model) => void;
 };
 
-export default function Thumbnail({ model }: ThumbnailProps) {
-  const { selectedModel, setSelectedModel } = useContext(ModelsContext);
+export default function ModelsNavigationModel({
+  model,
+  isSelected,
+  onSelect,
+}: ThumbnailProps) {
   const {
     id,
     title,
     school,
     src: { gltf, usdz },
   } = model;
-  const isSelected = model === selectedModel;
+
+  return (
+    <Box key={id} onClick={() => onSelect(model)}>
+      <AspectRatio ratio="16/9">
+        <model-viewer
+          src={gltf}
+          ios-src={usdz}
+          background-color="var(--nav-bg-yellow)"
+        />
+      </AspectRatio>
+    </Box>
+  );
+
   return (
     <Card key={id}>
       <CardActionArea
         sx={{
           bgcolor: isSelected ? "primary.main" : "",
         }}
-        onClick={() => setSelectedModel(model)}
+        onClick={() => onSelect(model)}
       >
         <AspectRatio ratio="16/9">
           <model-viewer src={gltf} ios-src={usdz} background-color="#2EAFAC" />

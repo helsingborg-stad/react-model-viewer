@@ -4,10 +4,10 @@ import React, { useContext, useRef, useState } from "react";
 import CloseFullscreenIcon from "@mui/icons-material/CloseFullscreen";
 import OpenInFullIcon from "@mui/icons-material/OpenInFull";
 import MenuIcon from "@mui/icons-material/Menu";
-import Sidebar from "./sidebar/Sidebar";
 import SelectedModelView from "./components/SelectedModelView";
 import SelectedModelInfoView from "./components/SelectedModelInfoView";
 import ModelRepositoryContext from "../ModelRepositoryContext";
+import ModelsNav from "./components/ModelsNavigationList";
 
 export default function KioskView() {
   const { isLoading, isError } = useContext(ModelRepositoryContext);
@@ -32,7 +32,7 @@ export default function KioskView() {
           height: "100%",
         }}
       >
-        <Sidebar />
+        <ModelsNav />
       </Box>
     </Drawer>
   );
@@ -41,11 +41,21 @@ export default function KioskView() {
     <>
       <Box sx={{ position: "absolute", top: "1em", left: "1em", zIndex: 1200 }}>
         <IconButton onClick={toggleFullscreen}>
-          {isFullscreen ? <CloseFullscreenIcon /> : <OpenInFullIcon />}
+          {isFullscreen ? (
+            <CloseFullscreenIcon fontSize="large" />
+          ) : (
+            <OpenInFullIcon fontSize="large" />
+          )}
         </IconButton>
       </Box>
-      {isLoading && <LinearProgress />}
-      {isError && <Alert severity="error">Error</Alert>}
+      {isLoading && (
+        <LinearProgress sx={{ marginTop: "auto", marginBottom: "auto" }} />
+      )}
+      {isError && (
+        <Alert severity="error" sx={{ marginTop: "4rem" }}>
+          Error
+        </Alert>
+      )}
       <SelectedModelView />
     </>
   );
@@ -61,13 +71,13 @@ export default function KioskView() {
           flexDirection: "column",
           height: "100vh",
           maxHeight: "100vh",
-          backgroundColor: "lightGray",
+          backgroundColor: "var(--content-gray-bg)",
         }}
       >
         <Box sx={{ flex: 1 }}>{contentView()}</Box>
         <Box
           sx={{
-            backgroundColor: "gray",
+            backgroundColor: "var(--info-gray-bg)",
             display: "flex",
             alignItems: "center",
           }}
