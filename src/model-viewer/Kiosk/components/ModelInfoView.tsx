@@ -1,18 +1,13 @@
+import React from "react";
+import { Model } from "@app/model-viewer/types";
 import { Grid, Typography } from "@mui/material";
-import React, { useContext } from "react";
 import QRCode from "react-qr-code";
-import ModelsContext from "../ModelsContext";
 
-export default function SelectedModelInfoView() {
-  const { selectedModel } = useContext(ModelsContext);
-  if (!selectedModel) {
-    return null;
-  }
-
+export default function ModelInfoView({ model }: { model: Model }) {
   const {
     title,
     school: { label },
-  } = selectedModel;
+  } = model;
 
   return (
     <Grid container spacing={2}>

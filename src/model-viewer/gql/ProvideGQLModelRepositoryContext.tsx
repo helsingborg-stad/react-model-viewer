@@ -27,7 +27,7 @@ export default function ProvideGQLModelRepositoryContext({
     }),
     [error, isError, isLoading, data, overrideForDebugPurposes]
   );
-  console.log("[ModelRepositoryContext]", provider);
+  // console.log("[ModelRepositoryContext]", provider);
 
   return (
     <ModelRepositoryContext.Provider value={provider}>

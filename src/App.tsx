@@ -8,13 +8,11 @@ function App() {
   return (
     <div className="App">
       <ProvideGQLModelRepositoryContext
-        overrideForDebugPurposes={
-          {
-            // isLoading: true,
-            // isError: true,
-            // models: []
-          }
-        }
+        overrideForDebugPurposes={{
+          isLoading: true,
+          isError: true,
+          models: [],
+        }}
       >
         <ProvideModelsContext>
           <KioskView />

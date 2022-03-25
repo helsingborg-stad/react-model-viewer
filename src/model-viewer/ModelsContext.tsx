@@ -45,7 +45,7 @@ export function ProvideModelsContext({ children }: ProvideModelsContextProps) {
     }
   }, [models, selectedModel]);
 
-  console.log("[ModelsContext]", provider);
+  // console.log("[ModelsContext]", provider);
   return (
     <ModelsContext.Provider value={provider}>{children}</ModelsContext.Provider>
   );

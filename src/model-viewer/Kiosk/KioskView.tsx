@@ -1,24 +1,16 @@
-import {
-  Alert,
-  AppBar,
-  Box,
-  Card,
-  CardContent,
-  Container,
-  Drawer,
-  Grid,
-  IconButton,
-} from "@mui/material";
+import { Alert, Box, Drawer, IconButton, LinearProgress } from "@mui/material";
 import { useFullscreen } from "ahooks";
-import React, { useRef, useState } from "react";
+import React, { useContext, useRef, useState } from "react";
 import CloseFullscreenIcon from "@mui/icons-material/CloseFullscreen";
 import OpenInFullIcon from "@mui/icons-material/OpenInFull";
 import MenuIcon from "@mui/icons-material/Menu";
 import Sidebar from "./sidebar/Sidebar";
-import SelectedModelView from "./SelectedModelView";
-import SelectedModelInfoView from "./SelectedModelInfoView";
+import SelectedModelView from "./components/SelectedModelView";
+import SelectedModelInfoView from "./components/SelectedModelInfoView";
+import ModelRepositoryContext from "../ModelRepositoryContext";
 
 export default function KioskView() {
+  const { isLoading, isError } = useContext(ModelRepositoryContext);
   const ref = useRef<HTMLDivElement | null>(null);
   const [isFullscreen, { toggleFullscreen }] = useFullscreen(ref);
 
@@ -52,6 +44,8 @@ export default function KioskView() {
           {isFullscreen ? <CloseFullscreenIcon /> : <OpenInFullIcon />}
         </IconButton>
       </Box>
+      {isLoading && <LinearProgress />}
+      {isError && <Alert severity="error">Error</Alert>}
       <SelectedModelView />
     </>
   );
