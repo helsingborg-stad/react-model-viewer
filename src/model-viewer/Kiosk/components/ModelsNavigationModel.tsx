@@ -23,7 +23,7 @@ export default function ModelsNavigationModel({
   const {
     id,
     title,
-    school,
+    school: { label },
     src: { gltf, usdz },
   } = model;
 
@@ -32,42 +32,29 @@ export default function ModelsNavigationModel({
       key={id}
       onClick={() => onSelect(model)}
       sx={{
+        backgroundColor: isSelected ? "white" : "",
         cursor: "pointer",
-        borderStyle: "solid",
-        borderWidth: "1px",
-        borderColor: isSelected ? "black" : "var(--nav-bg-yellow)",
       }}
     >
       <AspectRatio ratio="16/9">
-        <model-viewer
-          src={gltf}
-          ios-src={usdz}
-          background-color="var(--nav-bg-yellow)"
-        />
+        <model-viewer src={gltf} ios-src={usdz} />
       </AspectRatio>
-    </Box>
-  );
-
-  return (
-    <Card key={id}>
-      <CardActionArea
+      <Box
         sx={{
-          bgcolor: isSelected ? "primary.main" : "",
+          backgroundColor: isSelected ? "white" : "",
+          padding: "1em",
+          margin: "1em",
         }}
-        onClick={() => onSelect(model)}
       >
-        <AspectRatio ratio="16/9">
-          <model-viewer src={gltf} ios-src={usdz} background-color="#2EAFAC" />
-        </AspectRatio>
-        <CardContent>
+        <Box sx={{ textAlign: "center" }}>
           <Typography variant="h6" component="h3">
             {title}
           </Typography>
           <Typography sx={{ fontSize: 14 }} color="text.secondary">
-            {school.label}
+            {label}
           </Typography>
-        </CardContent>
-      </CardActionArea>
-    </Card>
+        </Box>
+      </Box>
+    </Box>
   );
 }
