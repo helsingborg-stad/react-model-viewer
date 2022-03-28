@@ -3,15 +3,7 @@ import ReactDOM from "react-dom";
 import "./index.css";
 import WebXRPolyfill from "webxr-polyfill";
 import { BrowserRouter } from "react-router-dom";
-import { ApolloClient, InMemoryCache, ApolloProvider } from "@apollo/client";
-import {
-  useQuery,
-  useMutation,
-  useQueryClient,
-  QueryClient,
-  QueryClientProvider,
-} from "react-query";
-import GQLClient from "./services/GQLClient";
+import { QueryClient, QueryClientProvider } from "react-query";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import "@google/model-viewer/dist/model-viewer";
