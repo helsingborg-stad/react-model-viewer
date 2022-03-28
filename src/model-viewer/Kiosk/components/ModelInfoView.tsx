@@ -1,21 +1,17 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Model } from "@app/model-viewer/types";
 import { Grid, Typography } from "@mui/material";
 import QRCode from "react-qr-code";
-
-const createModelLink = (id: string) => {
-  const url = new URL(document.location.href);
-  url.searchParams.set("model_id", id);
-  return url.href;
-};
+import { ModelLinkContext } from "@app/model-viewer/ModelLinkContext";
 
 export default function ModelInfoView({ model }: { model: Model }) {
   const {
-    id,
     title,
     school: { label },
   } = model;
-  const link = createModelLink(id);
+
+  const { getModelUrl } = useContext(ModelLinkContext);
+  const link = getModelUrl(model);
   return (
     <Grid container spacing={2}>
       <Grid item>
