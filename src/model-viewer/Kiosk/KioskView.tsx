@@ -49,10 +49,17 @@ export default function KioskView() {
         </IconButton>
       </Box>
       {isLoading && (
-        <LinearProgress sx={{ marginTop: "auto", marginBottom: "auto" }} />
+        <LinearProgress
+          sx={{ marginTop: "auto", marginBottom: "auto" }}
+          data-testid="kiosk-is-loading"
+        />
       )}
       {isError && (
-        <Alert severity="error" sx={{ marginTop: "4rem" }}>
+        <Alert
+          severity="error"
+          sx={{ marginTop: "4rem" }}
+          data-testid="kiosk-has-error"
+        >
           Error
         </Alert>
       )}

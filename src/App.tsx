@@ -4,7 +4,9 @@ import KioskView from "./model-viewer/Kiosk/KioskView";
 import ProvideGQLModelRepositoryContext from "./model-viewer/gql/ProvideGQLModelRepositoryContext";
 import ProvideModelsContext from "./model-viewer/ProvideModelsContext";
 import { ModelLinkContext } from "./model-viewer/ModelLinkContext";
-import createDefaultModelLinkService from "./model-viewer/services/model-link-service";
+import createDefaultModelLinkService, {
+  ModelLinkService,
+} from "./model-viewer/services/model-link-service";
 
 function App() {
   const linksService = createDefaultModelLinkService();
