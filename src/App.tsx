@@ -21,11 +21,11 @@ function App() {
           }
         }
       >
-        <ProvideModelsContext>
-          <ModelLinkContext.Provider value={linksService}>
+        <ModelLinkContext.Provider value={linksService}>
+          <ProvideModelsContext>
             <KioskView />
-          </ModelLinkContext.Provider>
-        </ProvideModelsContext>
+          </ProvideModelsContext>
+        </ModelLinkContext.Provider>
       </ProvideGQLModelRepositoryContext>
     </div>
   );

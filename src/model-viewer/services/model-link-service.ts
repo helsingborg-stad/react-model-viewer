@@ -15,7 +15,7 @@ export default function createDefaultModelLinkService(
   return {
     getModelFromUrl: <T extends LinkableModel>(models: T[]) => {
       const id = getUrl()?.searchParams.get("model_id");
-      return models.find((model) => model.id === id) || null;
+      return models.find((model) => String(model.id) === id) || null;
     },
     getModelUrl: ({ id }: LinkableModel) => {
       const url = new URL(getUrl());

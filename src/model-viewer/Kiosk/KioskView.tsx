@@ -8,9 +8,11 @@ import SelectedModelView from "./components/SelectedModelView";
 import SelectedModelInfoView from "./components/SelectedModelInfoView";
 import ModelRepositoryContext from "../ModelRepositoryContext";
 import ModelsNav from "./components/ModelsNavigationList";
+import ModelsContext from "../ModelsContext";
 
 export default function KioskView() {
   const { isLoading, isError } = useContext(ModelRepositoryContext);
+  const { selectedModel } = useContext(ModelsContext);
   const ref = useRef<HTMLDivElement | null>(null);
   const [isFullscreen, { toggleFullscreen }] = useFullscreen(ref);
 
@@ -70,7 +72,11 @@ export default function KioskView() {
   const infoView = () => <SelectedModelInfoView />;
 
   return (
-    <div ref={ref} style={{ background: "white" }}>
+    <div
+      ref={ref}
+      style={{ background: "white" }}
+      data-testid={`kioskview-for-model-${selectedModel?.id}`}
+    >
       {drawerView()}
       <Box
         sx={{
