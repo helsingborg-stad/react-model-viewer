@@ -89,7 +89,7 @@ export default function KioskView() {
   return (
     <div
       ref={ref}
-      style={{ background: "white" }}
+      style={{ background: "#bec4c9" }}
       data-testid={`kioskview-for-model-${selectedModel?.id}`}
     >
       {drawerView()}
