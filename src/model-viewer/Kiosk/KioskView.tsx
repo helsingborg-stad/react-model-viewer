@@ -12,6 +12,7 @@ import React, { useContext, useRef, useState } from "react";
 import CloseFullscreenIcon from "@mui/icons-material/CloseFullscreen";
 import OpenInFullIcon from "@mui/icons-material/OpenInFull";
 import MenuIcon from "@mui/icons-material/Menu";
+import CloseIcon from "@mui/icons-material/Close";
 import SelectedModelView from "./components/SelectedModelView";
 import SelectedModelInfoView from "./components/SelectedModelInfoView";
 import ModelRepositoryContext from "../ModelRepositoryContext";
@@ -37,6 +38,7 @@ export default function KioskView() {
       ModalProps={{
         keepMounted: true,
       }}
+      variant="persistent"
     >
       <Box
         sx={{
@@ -55,7 +57,7 @@ export default function KioskView() {
       {" "}
       {!isMobile && (
         <Box
-          sx={{ position: "absolute", top: "1em", left: "1em", zIndex: 1200 }}
+          sx={{ position: "absolute", top: "1rem", left: "1rem", zIndex: 1200 }}
         >
           <IconButton onClick={toggleFullscreen}>
             {isFullscreen ? (
@@ -95,6 +97,7 @@ export default function KioskView() {
       data-testid={`kioskview-for-model-${selectedModel?.id}`}
     >
       {drawerView()}
+
       <Box
         sx={{
           display: "flex",
@@ -102,6 +105,9 @@ export default function KioskView() {
           height: "100vh",
           maxHeight: "100vh",
           backgroundColor: "var(--content-gray-bg)",
+          width: drawer ? "calc(100% - 25vh)" : "100%",
+          transition: "width 225ms cubic-bezier(0, 0, 0.2, 1) 0ms",
+          willChange: "contents",
         }}
       >
         <Box sx={{ flex: 1 }}>{contentView()}</Box>
@@ -123,8 +129,12 @@ export default function KioskView() {
           >
             <Box sx={{ flex: 1 }}>{infoView()}</Box>
             <Box>
-              <IconButton onClick={() => setDrawer(true)}>
-                <MenuIcon fontSize="large" />
+              <IconButton onClick={() => setDrawer(!drawer)}>
+                {drawer ? (
+                  <CloseIcon fontSize="large" />
+                ) : (
+                  <MenuIcon fontSize="large" />
+                )}
               </IconButton>
             </Box>
           </Box>
