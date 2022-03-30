@@ -4,10 +4,13 @@ export interface Model {
   src: {
     gltf: string;
     usdz: string;
-    image: string;
   };
   school: {
     name: string;
     label: string;
+  };
+  featuredImage: {
+    src: string;
+    srcSet: string;
   };
 }

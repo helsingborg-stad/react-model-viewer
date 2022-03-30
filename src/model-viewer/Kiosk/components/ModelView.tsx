@@ -4,7 +4,8 @@ import { Model } from "@app/model-viewer/types";
 export default function ModelView({ model }: { model: Model }) {
   const {
     id,
-    src: { gltf, usdz, image },
+    src: { gltf, usdz },
+    featuredImage,
   } = model;
   return (
     <model-viewer
@@ -17,7 +18,13 @@ export default function ModelView({ model }: { model: Model }) {
       camera-controls
       shadow-intensity="1"
       background-color="#2EAFAC"
-      poster={image}
-    />
+    >
+      <img
+        slot="poster"
+        src={featuredImage.src}
+        srcSet={featuredImage.srcSet}
+        alt=""
+      />
+    </model-viewer>
   );
 }

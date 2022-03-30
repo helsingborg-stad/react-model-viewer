@@ -138,57 +138,56 @@ function createTestModels(): Model[] {
       id: "59",
       title: "72 H22 ex1",
       src: {
-        image: "",
         gltf: "https://modul-test.helsingborg.io/wp-content/uploads/sites/30/2022/03/telefonare.glb",
         usdz: "https://modul-test.helsingborg.io/wp-content/uploads/sites/30/2022/03/telefonare.usdz",
       },
       school: { name: "h22skolan", label: "H22skolan" },
+      featuredImage: { src: "", srcSet: "" },
     },
     {
       id: "55",
       title: "Lego test",
       src: {
-        image: "",
         gltf: "https://modul-test.helsingborg.io/wp-content/uploads/sites/30/2022/03/lego_test.glb",
         usdz: "https://modul-test.helsingborg.io/wp-content/uploads/sites/30/2022/03/lego_test.usdz",
       },
       school: { name: "lego-h22", label: "Lego H22" },
+      featuredImage: { src: "", srcSet: "" },
     },
     {
       id: "46",
       title: "Svensgårdsskolan 4",
       src: {
-        image: "",
         gltf: "https://modul-test.helsingborg.io/wp-content/uploads/sites/30/2022/02/svensgardsskolan_4.glb",
         usdz: "https://modul-test.helsingborg.io/wp-content/uploads/sites/30/2022/02/svensgardsskolan_4.usdz",
       },
       school: { name: "svensgardsskolan", label: "Svensgårdsskolan" },
+      featuredImage: { src: "", srcSet: "" },
     },
     {
       id: "42",
       title: "Svensgårdsskolan 3",
       src: {
-        image: "",
         gltf: "https://modul-test.helsingborg.io/wp-content/uploads/sites/30/2022/02/svensgardsskolan_3.glb",
         usdz: "https://modul-test.helsingborg.io/wp-content/uploads/sites/30/2022/02/svensgardsskolan_3.usdz",
       },
       school: { name: "svensgardsskolan", label: "Svensgårdsskolan" },
+      featuredImage: { src: "", srcSet: "" },
     },
     {
       id: "38",
       title: "Svensgårdsskolan 2",
       src: {
-        image: "",
         gltf: "https://modul-test.helsingborg.io/wp-content/uploads/sites/30/2022/02/svensgardsskolan_2.glb",
         usdz: "https://modul-test.helsingborg.io/wp-content/uploads/sites/30/2022/02/svensgardsskolan_2.usdz",
       },
       school: { name: "svensgardsskolan", label: "Svensgårdsskolan" },
+      featuredImage: { src: "", srcSet: "" },
     },
     {
       id: "33",
       title: "V Ramlösa förskola – badhus",
       src: {
-        image: "",
         gltf: "https://modul-test.helsingborg.io/wp-content/uploads/sites/30/2022/02/vastraramlosafskklassbadhus.glb",
         usdz: "https://modul-test.helsingborg.io/wp-content/uploads/sites/30/2022/02/vacc88stra-ramlocc88sa-f-klass-badhus-poly.usdz",
       },
@@ -196,46 +195,47 @@ function createTestModels(): Model[] {
         name: "vastra-ramlosa-forskola",
         label: "Västra ramlösa förskola",
       },
+      featuredImage: { src: "", srcSet: "" },
     },
     {
       id: "28",
       title: "Grupp Trädet",
       src: {
-        image: "",
         gltf: "https://modul-test.helsingborg.io/wp-content/uploads/sites/30/2022/02/tree.glb",
         usdz: "https://modul-test.helsingborg.io/wp-content/uploads/sites/30/2022/02/tree___1645130046598.usdz",
       },
       school: { name: "exempel-skola-1", label: "Exempel skola 1" },
+      featuredImage: { src: "", srcSet: "" },
     },
     {
       id: "24",
       title: "Grupp Dino",
       src: {
-        image: "",
         gltf: "https://modul-test.helsingborg.io/wp-content/uploads/sites/30/2022/02/dino.glb",
         usdz: "https://modul-test.helsingborg.io/wp-content/uploads/sites/30/2022/02/dino___1645129995277.usdz",
       },
       school: { name: "exempel-skola-2", label: "Exempel skola 2" },
+      featuredImage: { src: "", srcSet: "" },
     },
     {
       id: "20",
       title: "Grupp Tornet",
       src: {
-        image: "",
         gltf: "https://modul-test.helsingborg.io/wp-content/uploads/sites/30/2022/02/torn.glb",
         usdz: "https://modul-test.helsingborg.io/wp-content/uploads/sites/30/2022/02/usdz_torn___1645129968017.usdz",
       },
       school: { name: "exempel-skola-1", label: "Exempel skola 1" },
+      featuredImage: { src: "", srcSet: "" },
     },
     {
       id: "11",
       title: "Grupp Myntet",
       src: {
-        image: "",
         gltf: "https://modul-test.helsingborg.io/wp-content/uploads/sites/30/2022/02/mynt.glb",
         usdz: "https://modul-test.helsingborg.io/wp-content/uploads/sites/30/2022/02/mynt.usdz",
       },
       school: { name: "exempel-skola-2", label: "Exempel skola 2" },
+      featuredImage: { src: "", srcSet: "" },
     },
   ];
 }

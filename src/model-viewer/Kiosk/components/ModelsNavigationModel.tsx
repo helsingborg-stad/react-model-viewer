@@ -1,5 +1,6 @@
 import React from "react";
 import { Box, Typography } from "@mui/material";
+import { AspectRatio } from "react-aspect-ratio";
 import { Model } from "../../types";
 
 type ThumbnailProps = {
@@ -17,7 +18,7 @@ export default function ModelsNavigationModel({
     id,
     title,
     school: { label },
-    src: { image },
+    featuredImage,
   } = model;
   return (
     <Box
@@ -30,10 +31,8 @@ export default function ModelsNavigationModel({
     >
       <img
         alt=""
-        src={
-          image ||
-          "https://helsingborg.se/wp-content/uploads/2017/05/h22_mittpuff-1920x1080px.jpg"
-        }
+        src={featuredImage.src}
+        srcSet={featuredImage.srcSet}
         style={{ maxWidth: "100%", maxHeight: "100%" }}
       />
       <Box

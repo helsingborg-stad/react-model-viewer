@@ -30,6 +30,7 @@ type QueryModelsResponseType = {
       featuredImage?: {
         node?: {
           sourceUrl?: string;
+          srcSet?: string;
         };
       };
     }[];
@@ -54,12 +55,15 @@ const deserializeQueryModelResponse = (
       src: {
         gltf: gltf.mediaItemUrl,
         usdz: usdz.mediaItemUrl,
-        image: featuredImage?.node?.sourceUrl || defaultImage,
       },
       school: {
         id: school.databaseId,
         name: school.slug,
         label: school.name,
+      },
+      featuredImage: {
+        src: featuredImage?.node?.sourceUrl || defaultImage,
+        srcSet: featuredImage?.node?.srcSet || "",
       },
     })
   );
@@ -92,7 +96,8 @@ export const queryModels = async () => {
             featuredImage {
               node {
                 sourceUrl
-                sizes(size: MEDIUM)
+                sizes(size: LARGE)
+                srcSet
               }
             }
           }

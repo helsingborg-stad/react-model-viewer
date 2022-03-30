@@ -6,7 +6,6 @@ export type ImageSourceType = {
 export type ModelViewerSourceType = {
   gltf: string;
   usdz: string;
-  image: string;
 };
 
 export type SchoolType = {
@@ -19,4 +18,8 @@ export type Model3DType = {
   title: string;
   src: ModelViewerSourceType;
   school: SchoolType;
+  featuredImage: {
+    src: string;
+    srcSet: string;
+  };
 };
