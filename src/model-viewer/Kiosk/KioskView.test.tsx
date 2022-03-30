@@ -1,5 +1,9 @@
 import React from "react";
-import { render, screen } from "@testing-library/react";
+import {
+  render,
+  screen,
+  waitForElementToBeRemoved,
+} from "@testing-library/react";
 import KioskView from "./KioskView";
 import ModelRepositoryContext, {
   ModelRepositoryContextType,
@@ -33,6 +37,21 @@ const createLinkService = (currentUrl: string) =>
 const delay = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 
 describe("Kiosk", () => {
+  it("should not display error or loading on successful data fetch", async () => {
+    const link = createLinkService("https://www.example.com");
+    const repository = {
+      models: createTestModels(),
+      error: "an error",
+      isLoading: false,
+      isError: false,
+    };
+    render(<KioskWithDeps link={link} repository={repository} />);
+    const errorElement = screen.queryByTestId("kiosk-has-error");
+    const loadingElement = screen.queryByTestId("kiosk-is-loading");
+    expect(errorElement).not.toBeInTheDocument();
+    expect(loadingElement).not.toBeInTheDocument();
+  });
+
   it("should display error on error fetching models", () => {
     const link = createLinkService("https://www.example.com");
     const repository = {
@@ -55,13 +74,14 @@ describe("Kiosk", () => {
       isError: false,
     };
     render(<KioskWithDeps link={link} repository={repository} />);
-    const errorElement = screen.getByTestId("kiosk-is-loading");
-    expect(errorElement).toBeInTheDocument();
+    const loadingElement = screen.getByTestId("kiosk-is-loading");
+    expect(loadingElement).toBeInTheDocument();
   });
 
   it("should select the first model after loading", async () => {
     const link = createLinkService("https://www.example.com");
     const models = createTestModels();
+    const firstId = models[0].id;
     const repository = {
       models,
       error: null,
@@ -70,7 +90,9 @@ describe("Kiosk", () => {
     };
     render(<KioskWithDeps link={link} repository={repository} />);
 
-    const modelElement = await screen.getByTestId("kioskview-for-model-59");
+    const modelElement = await screen.getByTestId(
+      `kioskview-for-model-${firstId}`
+    );
     expect(modelElement).toBeInTheDocument();
   });
 
@@ -86,6 +108,26 @@ describe("Kiosk", () => {
     render(<KioskWithDeps link={link} repository={repository} />);
 
     const modelElement = await screen.getByTestId("kioskview-for-model-55");
+    expect(modelElement).toBeInTheDocument();
+  });
+
+  it("should select the first model if invalid id is given in url", async () => {
+    const link = createLinkService(
+      "https://www.example.com/?model_id=i_do_not_exist"
+    );
+    const models = createTestModels();
+    const firstId = models[0].id;
+    const repository = {
+      models,
+      error: null,
+      isLoading: false,
+      isError: false,
+    };
+    render(<KioskWithDeps link={link} repository={repository} />);
+
+    const modelElement = await screen.getByTestId(
+      `kioskview-for-model-${firstId}`
+    );
     expect(modelElement).toBeInTheDocument();
   });
 });
