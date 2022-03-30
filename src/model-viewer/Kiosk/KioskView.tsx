@@ -17,6 +17,7 @@ import SelectedModelInfoView from "./components/SelectedModelInfoView";
 import ModelRepositoryContext from "../ModelRepositoryContext";
 import ModelsNav from "./components/ModelsNavigationList";
 import ModelsContext from "../ModelsContext";
+import ModelsSliderButtons from "./components/ModelsSliderButtons";
 
 export default function KioskView() {
   const theme = useTheme();
@@ -81,6 +82,7 @@ export default function KioskView() {
         </Alert>
       )}
       <SelectedModelView />
+      <ModelsSliderButtons />
     </>
   );
 
