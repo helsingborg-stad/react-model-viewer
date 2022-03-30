@@ -24,6 +24,11 @@ type QueryModelsResponseType = {
           slug: string;
         }[];
       };
+      featuredImage?: {
+        node?: {
+          sourceUrl?: string;
+        };
+      };
     }[];
   };
 };
@@ -39,12 +44,14 @@ const deserializeQueryModelResponse = (
       schools: {
         nodes: [school],
       },
+      featuredImage,
     }) => ({
       id: databaseId,
       title,
       src: {
         gltf: gltf.mediaItemUrl,
         usdz: usdz.mediaItemUrl,
+        image: featuredImage?.node?.sourceUrl,
       },
       school: {
         id: school.databaseId,
@@ -79,12 +86,17 @@ export const queryModels = async () => {
                 slug
               }
             }
+            featuredImage {
+              node {
+                sourceUrl
+                sizes(size: MEDIUM)
+              }
+            }
           }
         }
       }
     `,
   });
-
   return deserializeQueryModelResponse(data);
 };
 

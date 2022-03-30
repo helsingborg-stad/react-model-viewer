@@ -1,12 +1,5 @@
 import React from "react";
-import {
-  Box,
-  Card,
-  CardActionArea,
-  CardContent,
-  Typography,
-} from "@mui/material";
-import { AspectRatio } from "react-aspect-ratio";
+import { Box, Typography } from "@mui/material";
 import { Model } from "../../types";
 
 type ThumbnailProps = {
@@ -24,9 +17,8 @@ export default function ModelsNavigationModel({
     id,
     title,
     school: { label },
-    src: { gltf, usdz },
+    src: { image },
   } = model;
-
   return (
     <Box
       key={id}
@@ -36,9 +28,14 @@ export default function ModelsNavigationModel({
         cursor: "pointer",
       }}
     >
-      <AspectRatio ratio="16/9">
-        <model-viewer src={gltf} ios-src={usdz} />
-      </AspectRatio>
+      <img
+        alt=""
+        src={
+          image ||
+          "https://helsingborg.se/wp-content/uploads/2017/05/h22_mittpuff-1920x1080px.jpg"
+        }
+        style={{ maxWidth: "100%", maxHeight: "100%" }}
+      />
       <Box
         sx={{
           backgroundColor: isSelected ? "white" : "",

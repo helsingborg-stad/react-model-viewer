@@ -6,6 +6,7 @@ export type ImageSourceType = {
 export type ModelViewerSourceType = {
   gltf: string;
   usdz: string;
+  image?: string;
 };
 
 export type SchoolType = {
