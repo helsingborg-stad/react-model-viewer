@@ -1,4 +1,12 @@
-import { Alert, Box, Drawer, IconButton, LinearProgress } from "@mui/material";
+import {
+  Alert,
+  Box,
+  Drawer,
+  IconButton,
+  LinearProgress,
+  useMediaQuery,
+  useTheme,
+} from "@mui/material";
 import { useFullscreen } from "ahooks";
 import React, { useContext, useRef, useState } from "react";
 import CloseFullscreenIcon from "@mui/icons-material/CloseFullscreen";
@@ -11,6 +19,8 @@ import ModelsNav from "./components/ModelsNavigationList";
 import ModelsContext from "../ModelsContext";
 
 export default function KioskView() {
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
   const { isLoading, isError } = useContext(ModelRepositoryContext);
   const { selectedModel } = useContext(ModelsContext);
   const ref = useRef<HTMLDivElement | null>(null);
@@ -41,15 +51,20 @@ export default function KioskView() {
 
   const contentView = () => (
     <>
-      <Box sx={{ position: "absolute", top: "1em", left: "1em", zIndex: 1200 }}>
-        <IconButton onClick={toggleFullscreen}>
-          {isFullscreen ? (
-            <CloseFullscreenIcon fontSize="large" />
-          ) : (
-            <OpenInFullIcon fontSize="large" />
-          )}
-        </IconButton>
-      </Box>
+      {" "}
+      {!isMobile && (
+        <Box
+          sx={{ position: "absolute", top: "1em", left: "1em", zIndex: 1200 }}
+        >
+          <IconButton onClick={toggleFullscreen}>
+            {isFullscreen ? (
+              <CloseFullscreenIcon fontSize="large" />
+            ) : (
+              <OpenInFullIcon fontSize="large" />
+            )}
+          </IconButton>
+        </Box>
+      )}
       {isLoading && (
         <LinearProgress
           sx={{ marginTop: "auto", marginBottom: "auto" }}
@@ -69,7 +84,7 @@ export default function KioskView() {
     </>
   );
 
-  const infoView = () => <SelectedModelInfoView />;
+  const infoView = () => <SelectedModelInfoView verbose={!isMobile} />;
 
   return (
     <div
@@ -81,7 +96,7 @@ export default function KioskView() {
       <Box
         sx={{
           display: "flex",
-          flexDirection: "column",
+          flexDirection: isMobile ? "column-reverse" : "column",
           height: "100vh",
           maxHeight: "100vh",
           backgroundColor: "var(--content-gray-bg)",
