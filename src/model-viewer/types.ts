@@ -4,7 +4,7 @@ export interface Model {
   src: {
     gltf: string;
     usdz: string;
-    image?: string;
+    image: string;
   };
   school: {
     name: string;

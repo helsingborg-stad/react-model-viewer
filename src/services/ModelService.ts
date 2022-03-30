@@ -1,6 +1,9 @@
 import { gql, ApolloQueryResult } from "@apollo/client";
 import { Model3DType } from "@app/types";
 import GQLClient from "./GQLClient";
+import appSettings from "../app-settings";
+
+const { defaultImage } = appSettings;
 
 type QueryModelsResponseType = {
   models: {
@@ -51,7 +54,7 @@ const deserializeQueryModelResponse = (
       src: {
         gltf: gltf.mediaItemUrl,
         usdz: usdz.mediaItemUrl,
-        image: featuredImage?.node?.sourceUrl,
+        image: featuredImage?.node?.sourceUrl || defaultImage,
       },
       school: {
         id: school.databaseId,
