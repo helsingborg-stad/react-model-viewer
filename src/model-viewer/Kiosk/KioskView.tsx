@@ -20,7 +20,7 @@ import ModelsContext from "../ModelsContext";
 
 export default function KioskView() {
   const theme = useTheme();
-  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
+  const isMobile = useMediaQuery(theme.breakpoints.down("sm"), { noSsr: true });
   const { isLoading, isError } = useContext(ModelRepositoryContext);
   const { selectedModel } = useContext(ModelsContext);
   const ref = useRef<HTMLDivElement | null>(null);
@@ -84,7 +84,7 @@ export default function KioskView() {
     </>
   );
 
-  const infoView = () => <SelectedModelInfoView verbose={!isMobile} />;
+  const infoView = () => <SelectedModelInfoView isMobile={isMobile} />;
 
   return (
     <div

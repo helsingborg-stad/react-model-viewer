@@ -3,12 +3,12 @@ import ModelsContext from "../../ModelsContext";
 import ModelInfoView from "./ModelInfoView";
 
 export default function SelectedModelInfoView({
-  verbose,
+  isMobile,
 }: {
-  verbose: boolean;
+  isMobile: boolean;
 }) {
   const { selectedModel } = useContext(ModelsContext);
   return (
-    selectedModel && <ModelInfoView model={selectedModel} verbose={verbose} />
+    selectedModel && <ModelInfoView model={selectedModel} isMobile={isMobile} />
   );
 }

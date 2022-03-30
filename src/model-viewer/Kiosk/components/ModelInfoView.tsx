@@ -6,10 +6,10 @@ import { ModelLinkContext } from "@app/model-viewer/ModelLinkContext";
 
 export default function ModelInfoView({
   model,
-  verbose,
+  isMobile,
 }: {
   model: Model;
-  verbose: boolean;
+  isMobile: boolean;
 }) {
   const {
     title,
@@ -20,7 +20,7 @@ export default function ModelInfoView({
   const link = getModelUrl(model);
   return (
     <Grid container spacing={2}>
-      {verbose && (
+      {!isMobile && (
         <Grid item>
           <QRCode size={64} value={link} />
         </Grid>
