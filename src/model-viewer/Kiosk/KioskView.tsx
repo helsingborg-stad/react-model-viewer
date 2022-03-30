@@ -110,7 +110,7 @@ export default function KioskView() {
           willChange: "contents",
         }}
       >
-        <Box sx={{ flex: 1 }}>{contentView()}</Box>
+        <Box sx={{ flex: 1, position: "relative" }}>{contentView()}</Box>
         <Box
           sx={{
             backgroundColor: "var(--info-gray-bg)",
