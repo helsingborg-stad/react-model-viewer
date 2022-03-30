@@ -17,14 +17,8 @@ export default function ModelView({ model }: { model: Model }) {
       auto-rotate
       camera-controls
       shadow-intensity="1"
-      background-color="#2EAFAC"
-    >
-      <img
-        slot="poster"
-        src={featuredImage.src}
-        srcSet={featuredImage.srcSet}
-        alt=""
-      />
-    </model-viewer>
+      background-color="unset"
+      poster={featuredImage.src}
+    />
   );
 }
