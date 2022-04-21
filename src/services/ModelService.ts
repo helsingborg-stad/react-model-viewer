@@ -57,9 +57,9 @@ const deserializeQueryModelResponse = (
         usdz: usdz.mediaItemUrl,
       },
       school: {
-        id: school.databaseId,
-        name: school.slug,
-        label: school.name,
+        id: school?.databaseId,
+        name: school?.slug,
+        label: school?.name,
       },
       featuredImage: {
         src: featuredImage?.node?.sourceUrl || defaultImage,
