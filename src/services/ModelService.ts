@@ -7,6 +7,12 @@ const { defaultImage } = appSettings;
 
 type QueryModelsResponseType = {
   models: {
+    pageInfo: {
+      startCursor: string;
+      endCursor: string;
+      hasNextPage: boolean;
+      hasPrevPage: boolean;
+    };
     nodes: {
       title: string;
       slug: string;
@@ -68,11 +74,37 @@ const deserializeQueryModelResponse = (
     })
   );
 
-export const queryModels = async () => {
+interface PaginationParameters {
+  first: number | null;
+  last: number | null;
+  after: string | null;
+  before: string | null;
+}
+export const queryModelsPaginated = async (
+  pagination?: Partial<PaginationParameters> | undefined
+) => {
   const { data } = await GQLClient.query<QueryModelsResponseType>({
+    variables: {
+      first: pagination?.first || null,
+      last: pagination?.last || null,
+      before: pagination?.before || null,
+      after: pagination?.after || null,
+    },
     query: gql`
-      query MyQuery {
-        models(where: { status: PUBLISH }) {
+      query MyQuery($first: Int, $last: Int, $after: String, $before: String) {
+        models(
+          first: $first
+          last: $last
+          after: $after
+          before: $before
+          where: { status: PUBLISH }
+        ) {
+          pageInfo {
+            hasNextPage
+            hasPreviousPage
+            startCursor
+            endCursor
+          }
           nodes {
             id
             databaseId
@@ -105,7 +137,23 @@ export const queryModels = async () => {
       }
     `,
   });
-  return deserializeQueryModelResponse(data);
+  return data; // deserializeQueryModelResponse(data);
+};
+
+export const queryModels = async () => {
+  const collectPages = async (
+    head: Model3DType[],
+    after: string | null
+  ): Promise<Model3DType[]> => {
+    const response = await queryModelsPaginated({ after });
+    const page = deserializeQueryModelResponse(response);
+    const endCursor = response.models?.pageInfo?.endCursor;
+    return endCursor
+      ? collectPages([...head, ...page], endCursor)
+      : [...head, ...page];
+  };
+
+  return collectPages([], null);
 };
 
 export default { queryModels };
