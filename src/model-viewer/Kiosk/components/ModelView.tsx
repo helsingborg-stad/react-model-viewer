@@ -30,9 +30,10 @@ export default function ModelView({ model }: { model: Model }) {
           position: "absolute",
           top: "16px",
           right: "16px",
+          padding: "8px",
         }}
       >
-        👋 Aktivera AR
+        Visa i verkligheten
       </button>
     </model-viewer>
   );
