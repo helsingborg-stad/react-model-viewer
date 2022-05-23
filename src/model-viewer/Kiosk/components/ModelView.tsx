@@ -19,6 +19,21 @@ export default function ModelView({ model }: { model: Model }) {
       shadow-intensity="1"
       background-color="unset"
       poster={featuredImage.src}
-    />
+    >
+      <button
+        type="button"
+        slot="ar-button"
+        style={{
+          backgroundColor: "white",
+          borderRadius: "4px",
+          border: "none",
+          position: "absolute",
+          top: "16px",
+          right: "16px",
+        }}
+      >
+        👋 Aktivera AR
+      </button>
+    </model-viewer>
   );
 }
