@@ -1,7 +1,7 @@
 import { ApolloClient, InMemoryCache } from "@apollo/client";
 
 export default new ApolloClient({
-  uri: window.location.href.split('=')[1],
+  uri: "https://modul-test.helsingborg.io/barnens-h22/graphql",
   cache: new InMemoryCache(),
   headers: {
     // Origin: "https://barnens-h22.multi.test",
