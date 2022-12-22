@@ -39,7 +39,7 @@ function App() {
       label: "label"
     },
     featuredImage: {
-      src: "https://modul-test.helsingborg.io/barnens-h22/wp-content/uploads/2021/03/IMG_20210304_114000.jpg",
+      src: "",
       srcSet: ""
     }
   }));
