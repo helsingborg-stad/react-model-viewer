@@ -38,7 +38,9 @@
     "three": "^0.137.5",
     "typescript": "^4.4",
     "web-vitals": "^2.1.0",
-    "webxr-polyfill": "^2.0.3"
+    "webxr-polyfill": "^2.0.3",
+    "craco-alias": "^3.0.1"
+
   },
   "engines": {
     "node": "19.2.0"
