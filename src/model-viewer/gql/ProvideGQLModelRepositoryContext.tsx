@@ -1,6 +1,6 @@
-import { queryModels } from "@app/services/ModelService";
+// import { queryModels } from "@app/services/ModelService";
 import React, { useMemo } from "react";
-import { useQuery } from "react-query";
+// import { useQuery } from "react-query";
 import ModelRepositoryContext, {
   ModelRepositoryContextType,
 } from "../ModelRepositoryContext";
@@ -16,7 +16,7 @@ export default function ProvideGQLModelRepositoryContext({
   overrideForDebugPurposes,
 }: ProvideGQLModelRepositoryContextProps) {
   
-  const { isLoading, isError, data, error } = useQuery("models", queryModels);
+  // const { isLoading, isError, data, error } = useQuery("models", queryModels);
 
   const provider: ModelRepositoryContextType = useMemo(
     () => ({
