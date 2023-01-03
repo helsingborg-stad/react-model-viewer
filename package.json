@@ -3,7 +3,6 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@apollo/client": "^3.5.8",
     "@ar-js-org/ar.js": "^3.3.3-es6-beta-03",
     "@artcom/react-three-arjs": "^0.3.2",
     "@craco/craco": "^6.1.2",
@@ -17,7 +16,7 @@
     "@react-three/drei": "^8.8.4",
     "@react-three/fiber": "^7.0.26",
     "@react-three/xr": "^3.3.0",
-    "@testing-library/jest-dom": "^5.14.1",
+    "@testing-library/jest-dom": "^5.14.1", 
     "@testing-library/react": "^12.0.0",
     "@testing-library/user-event": "^13.2.1",
     "@types/jest": "^27.0.1",
