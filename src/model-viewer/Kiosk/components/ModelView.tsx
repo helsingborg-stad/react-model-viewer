@@ -19,6 +19,7 @@ export default function ModelView({ model }: { model: Model }) {
       shadow-intensity="1"
       background-color="unset"
       poster={featuredImage.src}
+      
     >
       <button
         type="button"

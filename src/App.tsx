@@ -26,7 +26,7 @@ function App() {
 
   React.useEffect(() => {
     setLoading(true)
-    fetch(url).then((res) => res.json()).catch(err => { setError(true); setLoading(false) })
+    fetch(url).then((res) => res.json()).catch(err => { setError(true); setLoading(false); console.error(err) })
       .then((res) => {
         setLoading(false)
         setData(res)
@@ -36,7 +36,7 @@ function App() {
   const models = data?.acf?.models.map((m: any): Model[] => ({
     ...m, id: m.name, title: m.name, src: { usdz: m["source-usdz"], gltf: m["source-glb"] }, school: {
       name: "skola",
-      label: "label"
+      label: "Förslag på lekplats på Weinerplatsen."
     },
     featuredImage: {
       src: "",

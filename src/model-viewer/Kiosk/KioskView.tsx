@@ -105,7 +105,7 @@ export default function KioskView() {
           height: "100vh",
           maxHeight: "100vh",
           backgroundColor: "var(--content-gray-bg)",
-          width: drawer ? "calc(100% - 25vh)" : "100%",
+          width: drawer ? "calc(100% - 25vh)" : "100%", 
           transition: "width 225ms cubic-bezier(0, 0, 0.2, 1) 0ms",
           willChange: "contents",
         }}
