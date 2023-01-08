@@ -22,7 +22,10 @@ function App() {
   // get from URL
   // const id = 691;
 
-  const url = `https://modul-test.helsingborg.io/barnens-h22/wp-json/wp/v2/galleries/${galleryId}?acf_format=standard`;
+  // const url = `https://modul-test.helsingborg.io/barnens-h22/wp-json/wp/v2/galleries/${galleryId}?acf_format=standard`;
+
+  const url = `https://modul-test.helsingborg.io/helsingborgsrummet/wp-json/wp/v2/untoldgarden/${galleryId}?acf_format=standard`;
+
 
   React.useEffect(() => {
     setLoading(true)
@@ -33,7 +36,7 @@ function App() {
       })
   }, [url])
 
-  const models = data?.acf?.models.map((m: any): Model[] => ({
+  const models = data?.acf?.proposals.map((m: any): Model[] => ({
     ...m, id: m.name, title: m.name, src: { usdz: m["source-usdz"], gltf: m["source-glb"] }, school: {
       name: "skola",
       label: "Förslag på lekplats på Weinerplatsen."
@@ -42,7 +45,7 @@ function App() {
       src: "",
       srcSet: ""
     }
-  }));
+  }));  
 
   return (
     <div className="App">
