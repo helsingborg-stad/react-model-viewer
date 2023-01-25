@@ -11,6 +11,7 @@ function ModelViewerElement({ gltf, usdz }: any) {
       camera-controls
       shadow-intensity="1"
       background-color="#2EAFAC"
+      
     />
   );
 }

@@ -1,6 +1,5 @@
-import React, { useRef } from "react";
+import React from "react";
 import { Model } from "@app/model-viewer/types";
-// import { ModelViewerElement } from ".model-viewer/ModelViewerElement";
 
 export default function ModelView({ model }: { model: Model }) {
   const {
@@ -8,22 +7,12 @@ export default function ModelView({ model }: { model: Model }) {
     src: { gltf, usdz },
     featuredImage,
   } = model;
-  const arButtonRef = useRef<HTMLButtonElement>(null);
-  const modelViewerTransform = document.querySelector("model-viewer#transform") as any;
-
-  const handleButtonClick = () => {
-    if(modelViewerTransform){
-    modelViewerTransform.scale = `.01 .01 .01`;
-    }
-  }
-
   return (
     <model-viewer
-      id = "transform"
       key={id}
       data-testid={`model-viewer-for-${id}`}
       src={gltf}
-      ios-src={gltf}
+      ios-src={usdz}
       ar
       auto-rotate
       camera-controls
@@ -34,8 +23,6 @@ export default function ModelView({ model }: { model: Model }) {
       <button
         type="button"
         slot="ar-button"
-        ref={arButtonRef}
-        onClick={handleButtonClick}
         style={{
           backgroundColor: "white",
           borderRadius: "4px",
