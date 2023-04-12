@@ -3,5 +3,8 @@
   "editor.formatOnSave": true,
   "editor.detectIndentation": false,
   "editor.tabSize": 2,
-  "typescript.tsdk": "node_modules/typescript/lib"
+  "typescript.tsdk": "node_modules/typescript/lib",
+  "[typescriptreact]": {
+    "editor.defaultFormatter": "ms-vsliveshare.vsliveshare"
+  }
 }

@@ -18,4 +18,8 @@ export type Model3DType = {
   title: string;
   src: ModelViewerSourceType;
   school: SchoolType;
+  featuredImage: {
+    src: string;
+    srcSet: string;
+  };
 };
